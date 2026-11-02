@@ -32,15 +32,9 @@ public class IdleState : State
 
     public override void Update()
     {
-        float x = player.moveAction.ReadValue<Vector2>().x;
-        float y = player.moveAction.ReadValue<Vector2>().y;
+        //float x = player.moveAction.ReadValue<Vector2>().x;
 
-
-        if (x > 0.1f || x < -0.1f)
-        {
-            sm.ChangeState(sm.runState);
-        }
-        if (y > 0.1f || y <-0.1f)
+        if (player.moveAction.IsPressed())
         {
             sm.ChangeState(sm.runState);
         }
@@ -59,7 +53,7 @@ public class IdleState : State
 
     public override void OnCollisionEnter(Collision collision)
     {
-        Debug.Log("collided");
+        //Debug.Log("collided");
     }
 
 

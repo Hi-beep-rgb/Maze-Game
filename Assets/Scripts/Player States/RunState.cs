@@ -4,6 +4,8 @@
 
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.InputSystem;
+using UnityEngine.Windows;
 
 public class RunState : State
 {
@@ -30,6 +32,8 @@ public class RunState : State
 
     public override void Update()
     {
+        Vector2 input = player.moveAction.ReadValue<Vector2>() * speed;
+
         ReadInput();
 
         if (player.interactAction.IsPressed())
@@ -38,7 +42,7 @@ public class RunState : State
         }
 
         //debug move gameObject
-        player.rb.linearVelocity = player.moveAction.ReadValue<Vector2>() * speed;
+        player.rb.linearVelocity = new Vector3(input.x, player.rb.linearVelocity.y, input.y);
 
         //if the move controller is released, change to idle state
 
